@@ -1,0 +1,787 @@
+
+/* =====================================
+   1. GLOBAL STYLES
+===================================== */
+:root {
+    --background: #101114;
+    --surface: #1a1b20;
+    --red: #a52a35;
+    --red-light: #d34c57;
+    --paper: #d8c9a6;
+    --text: #f3efe8;
+    --muted: #a4a2a0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;}
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;}
+a {
+    color: inherit;
+    text-decoration: none;}
+/* =====================================
+   2. NAVIGATION BAR
+===================================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px clamp(20px, 6vw, 84px);
+    background: rgba(16, 17, 20, 0.95);
+    border-bottom: 1px solid #2b2c31;
+}
+.brand {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    white-space: nowrap;}
+.brand span {
+    color: var(--red-light);}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;}
+.nav-links a {
+    position: relative;
+    color: var(--muted);
+    font-size: 13px;
+    transition: color 0.3s ease;}
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom:-6px;
+    width: 0;
+    height: 2px;
+    background: var(--red-light);
+    transition: width 0.3s ease;}
+.nav-links a:hover {
+    color: var(--text);}
+.nav-links a:hover::after {
+    width: 100%;}
+.header-cta {
+    padding: 10px 17px;
+    border: 1px solid #6f3037;
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: background 0.3s ease;}
+.header-cta:hover {
+    background: var(--red);}
+/* =====================================
+   3. HERO SECTION
+===================================== */
+.hero {
+    position: relative;
+    isolation: isolate;
+    max-width: 1500px;
+    min-height: calc(100vh - 75px);
+    margin: 0 auto;
+    padding: 75px clamp(24px, 7vw, 100px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: clamp(35px, 6vw, 85px);
+    overflow: hidden;}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(
+            circle at 80% 45%,
+            rgba(165, 42, 53, 0.13),
+            transparent 40%
+        );
+}
+.hero-content {
+    max-width: 620px;
+}
+/* Case number and status */
+.case-label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+    color: var(--paper);
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.case-label span {
+    color: var(--red-light);
+}
+.case-label span::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--red-light);
+}
+/* Main headline */
+.hero h1 {
+    margin-bottom: 25px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(54px, 6.5vw, 88px);
+    font-weight: normal;
+    line-height: 1.02;
+    letter-spacing: -3px;
+}
+.hero h1 span {
+    color: var(--red-light);
+    font-style: italic;
+}
+.hero-description {
+    max-width: 480px;
+    margin-bottom: 30px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+/* Hero buttons */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 48px;
+    padding: 13px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+.primary-button {
+    background: var(--red);
+    color: white;
+    border: 1px solid var(--red);}
+.primary-button:hover {
+    background: #bf3542;
+    border-color: #bf3542;
+    transform: translateY(-2px);}
+.secondary-button {
+    border: 1px solid #45454b;
+    color: var(--text);}
+.secondary-button:hover {
+    border-color: var(--red-light);
+    transform: translateY(-2px);}
+.hero-note {
+    margin-top: 30px;
+    color: #77767b;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    line-height: 1.8;}
+/* =====================================
+   4. CLASSIFIED CASE-FILE PANEL
+===================================== */
+.case-visual {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    justify-self: center;
+    background: var(--paper);
+    color: #201d19;
+    border: 1px solid #eee2c4;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+    transform: rotate(1.2deg);
+    transition: transform 0.4s ease;}
+.case-visual:hover {
+    transform: rotate(0deg) translateY(-4px);}
+/* Red strip at the top of the file */
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 18px;
+    background: var(--red);
+    color: white;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+/* Paper content */
+.file-content {
+    position: relative;
+    min-height: 425px;
+    padding: 35px;
+    padding-bottom: 115px;
+    background:
+        linear-gradient(
+            135deg,
+            #e6d8b7,
+            #d8c9a6 60%,
+            #cbb98d
+        );
+}
+.file-overline {
+    margin-bottom: 18px;
+    color: #6f3037;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.file-content h2 {
+    margin-bottom: 25px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 4vw, 54px);
+    font-weight: normal;
+    line-height: 0.98;
+    letter-spacing: -1.5px;
+}
+.file-divider {
+    height: 1px;
+    margin-bottom: 10px;
+    background: rgba(32, 29, 25, 0.35);
+}
+/* Evidence details */
+.file-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 13px 0;
+    border-bottom: 1px dashed rgba(32, 29, 25, 0.3);
+}
+.file-detail > strong {
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    font-weight: normal;
+}
+.file-stamp {
+    position: absolute;
+    right: 28px;
+    bottom: 30px;
+    padding: 9px 15px;
+    border: 3px double var(--red);
+    color: var(--red);
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
+    transform: rotate(-10deg);
+}
+/* Footer of the paper panel */
+.file-footer {
+    padding: 12px;
+    background: #28282b;
+    color: var(--paper);
+    font-family: "Courier New", monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+/* =====================================
+   5. RESPONSIVE DESIGN
+===================================== */
+@media (max-width: 900px) {
+    .site-header {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 24px;
+    }
+    .hero {
+        min-height: auto;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 55px;
+        padding-top: 65px;
+        padding-bottom: 75px;
+    }
+    .hero-content {
+        max-width: 650px;
+    }
+    .hero h1 {
+        font-size: clamp(56px, 10vw, 78px);
+    }
+    .case-visual {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    .site-header {
+        padding: 16px 18px;
+        gap: 14px;
+    }
+    .brand {
+        font-size: 20px;
+    }
+    .header-cta {
+        padding: 9px 11px;
+        font-size: 10px;
+    }
+    .nav-links {
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .nav-links a {
+        font-size: 11px;
+    }
+    .hero {
+        padding: 45px 20px 60px;
+        gap: 40px;
+    }
+    .case-label {
+        gap: 10px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+    .hero h1 {
+        font-size: clamp(48px, 13vw, 62px);
+        letter-spacing: -2px;
+    }
+    .hero-description {
+        font-size: 14px;
+    }
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+    .file-content {
+        min-height: 395px;
+        padding: 25px;
+        padding-bottom: 105px;
+    }
+    .file-content h2 {
+        font-size: 43px;
+    }
+    .file-header {
+        padding: 12px;
+        font-size: 9px;
+    }
+    .file-stamp {
+        right: 20px;
+        bottom: 24px;
+    }
+}
+/* =====================================
+   4. CASE SECTION
+===================================== */
+
+.case-section {
+    padding: 110px clamp(24px, 7vw, 100px);
+
+    background: var(--surface);
+
+    border-top: 1px solid #2b2c31;
+    border-bottom: 1px solid #2b2c31;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin-bottom: 55px;
+}
+
+.section-label {
+    margin-bottom: 15px;
+
+    color: var(--red-light);
+
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    margin-bottom: 20px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: normal;
+    line-height: 1;
+}
+
+.section-heading > p:last-child {
+    max-width: 560px;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.case-story {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+    max-width: 1100px;
+}
+
+.case-story p {
+    padding: 25px;
+
+    border-left: 1px solid var(--red);
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.case-story p:first-child {
+    color: var(--text);
+}
+/* =====================================
+   5. SUSPECTS SECTION
+===================================== */
+
+.suspects-section {
+    padding: 110px clamp(24px, 7vw, 100px);
+
+    background: var(--background);
+
+    border-bottom: 1px solid #2b2c31;
+}
+
+.suspect-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    max-width: 1100px;
+}
+
+.suspect-card {
+    position: relative;
+
+    min-height: 330px;
+    padding: 30px;
+
+    background: var(--surface);
+    border: 1px solid #303137;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.suspect-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--red);
+}
+
+.suspect-number {
+    margin-bottom: 55px;
+
+    color: var(--red-light);
+
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.suspect-card h3 {
+    margin-bottom: 8px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.suspect-role {
+    margin-bottom: 25px;
+
+    color: var(--red-light);
+
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.suspect-card > p:last-child {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+/* =====================================
+   6. EVIDENCE SECTION
+===================================== */
+
+.evidence-section {
+    padding: 110px clamp(24px, 7vw, 100px);
+
+    background: var(--surface);
+
+    border-bottom: 1px solid #2b2c31;
+}
+
+.evidence-grid {
+    max-width: 1100px;
+    margin-top: 60px;
+}
+
+.evidence-card {
+    display: grid;
+    grid-template-columns: 120px 1fr 1.2fr;
+    align-items: center;
+    gap: 35px;
+
+    padding: 28px 0;
+
+    border-top: 1px solid #3a3b40;
+}
+
+.evidence-card:last-child {
+    border-bottom: 1px solid #3a3b40;
+}
+
+.evidence-card:hover {
+    padding-left: 15px;
+    border-color: var(--red);
+    transition: all 0.3s ease;
+}
+
+.evidence-number {
+    color: var(--red-light);
+
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.evidence-card h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 27px;
+    font-weight: normal;
+}
+
+.evidence-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+/* =====================================
+   7. FOOTER
+===================================== */
+
+.site-footer {
+    padding: 70px clamp(24px, 7vw, 100px) 25px;
+
+    background: var(--background);
+
+    border-top: 1px solid #2b2c31;
+}
+
+.footer-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+
+    padding-bottom: 55px;
+}
+
+.brand-name {
+    margin-bottom: 12px;
+
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.brand-name span {
+    color: var(--red-light);
+}
+
+.footer-brand > p:last-child {
+    max-width: 400px;
+
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.footer-brand::after {
+    content: "CASE FILE 014\A STATUS: UNRESOLVED";
+
+    white-space: pre;
+
+    padding-left: 20px;
+
+    border-left: 2px solid var(--red);
+
+    color: #77767b;
+
+    font-family: "Courier New", monospace;
+    font-size: 9px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #292a2e;
+
+    color: #66676b;
+
+    font-family: "Courier New", monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+/* =====================================
+   8. RESPONSIVE SECTIONS
+===================================== */
+
+@media (max-width: 900px) {
+
+    /* CASE */
+
+    .case-story {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .case-story p {
+        border-left: none;
+        border-top: 1px solid var(--red);
+    }
+
+    .case-story p:last-child {
+        border-bottom: 1px solid var(--red);
+    }
+
+    /* SUSPECTS */
+
+    .suspect-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .suspect-card {
+        min-height: auto;
+    }
+
+    /* EVIDENCE */
+
+    .evidence-card {
+        grid-template-columns: 90px 1fr;
+        gap: 20px;
+    }
+    .evidence-card p {
+        grid-column: 2;
+    }
+    /* FOOTER */
+    .footer-brand {
+        flex-direction: column;
+    }
+
+}
+/* =====================================
+   9. GUESS SECTION
+===================================== */
+
+.guess-section {
+    padding: 120px clamp(24px, 7vw, 100px);
+
+    background: var(--background);
+
+    border-bottom: 1px solid #2b2c31;
+}
+
+.guess-content {
+    max-width: 850px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.guess-content h2 {
+    margin-bottom: 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 6vw, 72px);
+    font-weight: normal;
+    line-height: 1;
+}
+
+.guess-content > p:not(.section-label):not(.guess-result) {
+    max-width: 500px;
+    margin: 0 auto 45px;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.guess-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.guess-button {
+    min-width: 170px;
+    padding: 15px 22px;
+
+    background: transparent;
+    border: 1px solid #45454b;
+
+    color: var(--text);
+
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.guess-button:hover {
+    background: var(--red);
+    border-color: var(--red);
+    transform: translateY(-3px);
+}
+
+.guess-result {
+    min-height: 25px;
+    margin-top: 35px;
+
+    color: var(--red-light);
+
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
