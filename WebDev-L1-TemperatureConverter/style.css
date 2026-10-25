@@ -1,0 +1,256 @@
+
+/* ==============================
+   Temperature Converter
+   Clean blue, minimal design
+   ============================== */
+
+:root {
+    --primary: #2859c5;
+    --primary-dark: #1c4196;
+    --primary-light: #eaf1ff;
+    --background: #f3f7fd;
+    --surface: #ffffff;
+    --text: #192b45;
+    --text-muted: #687991;
+    --border: #dce5f0;
+    --success-bg: #edf6ff;
+    --shadow: 0 18px 50px rgba(31, 64, 115, 0.10);
+}
+
+/* Reset */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(210, 226, 255, 0.55),
+            transparent 32%
+        ),
+        var(--background);
+    line-height: 1.6;
+}
+
+/* Main layout */
+
+.converter {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 32px 18px;
+}
+
+/* Main converter card */
+
+.converter-card {
+    width: 100%;
+    max-width: 470px;
+    padding: clamp(25px, 5vw, 42px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--primary);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+/* Small heading label */
+
+.label {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 5px 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+/* Main heading */
+
+h1 {
+    margin-bottom: 14px;
+    font-size: clamp(2rem, 6vw, 2.7rem);
+    font-weight: 750;
+    line-height: 1.12;
+    letter-spacing: -1.2px;
+}
+
+h1 span {
+    color: var(--primary);
+}
+
+/* Description */
+
+.description {
+    max-width: 340px;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+
+/* Form layout */
+
+.converter-form {
+    display: grid;
+    gap: 11px;
+}
+
+.converter-form label {
+    margin-top: 7px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+/* Input and dropdown */
+
+.converter-form input,
+.converter-form select {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 14px;
+    color: var(--text);
+    background: #fbfcff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 0.96rem;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.converter-form input::placeholder {
+    color: #99a6b8;
+}
+
+.converter-form input:focus,
+.converter-form select:focus {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(40, 89, 197, 0.12);
+}
+
+.converter-form select {
+    cursor: pointer;
+}
+
+/* Convert button */
+
+#convert-button {
+    width: 100%;
+    min-height: 51px;
+    margin-top: 12px;
+    padding: 13px 18px;
+    color: #ffffff;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 0.97rem;
+    font-weight: 650;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(40, 89, 197, 0.16);
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#convert-button:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 7px 16px rgba(40, 89, 197, 0.23);
+    transform: translateY(-1px);
+}
+
+#convert-button:active {
+    transform: translateY(0);
+}
+
+#convert-button:focus-visible {
+    outline: 3px solid #9bbaff;
+    outline-offset: 3px;
+}
+
+/* Conversion result */
+
+
+.result {
+    margin-top: 24px;
+    padding: 20px;
+    min-height: 70px;
+    display: block;
+    overflow-wrap: anywhere;
+    color: var(--text-muted);
+    background: var(--success-bg);
+    border: 1px solid #dce8fc;
+    border-left: 4px solid var(--primary);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.9;
+}
+
+.result strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+
+/* Responsive layout */
+
+@media (max-width: 480px) {
+    .converter {
+        padding: 20px 14px;
+    }
+
+    .converter-card {
+        padding: 25px 21px;
+        border-radius: 17px;
+    }
+
+    h1 {
+        letter-spacing: -0.8px;
+    }
+
+    .description {
+        margin-bottom: 23px;
+        font-size: 0.91rem;
+    }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
