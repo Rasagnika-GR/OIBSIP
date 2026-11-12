@@ -1,4 +1,3 @@
-
 const temperatureInput = document.getElementById("temperature");
 const unitSelect = document.getElementById("unit");
 const convertButton = document.getElementById("convert-button");
@@ -7,16 +6,16 @@ const result = document.getElementById("result");
 convertButton.addEventListener("click", function () {
     const inputValue = temperatureInput.value.trim();
     const unit = unitSelect.value;
-
-    // Validate empty input
     if (inputValue === "") {
         result.textContent = "Please enter a temperature.";
         return;
     }
 
     const temperature = Number(inputValue);
-
-    // Validate absolute zero
+    if (!Number.isFinite(temperature)) {
+    result.textContent = "Please enter a valid number.";
+    return;
+}
     if (
         (unit === "celsius" && temperature < -273.15) ||
         (unit === "fahrenheit" && temperature < -459.67) ||
@@ -26,8 +25,6 @@ convertButton.addEventListener("click", function () {
             "Temperature cannot be below absolute zero.";
         return;
     }
-
-    // Convert the input to Celsius
     let celsius;
 
     if (unit === "celsius") {
@@ -37,12 +34,8 @@ convertButton.addEventListener("click", function () {
     } else {
         celsius = temperature - 273.15;
     }
-
-    // Convert Celsius to Fahrenheit and Kelvin
     const fahrenheit = (celsius * 9 / 5) + 32;
     const kelvin = celsius + 273.15;
-
-    // Display all converted temperatures
     result.innerHTML = `
         <strong>Converted Temperature</strong><br>
         Celsius: ${celsius.toFixed(2)} °C<br>
