@@ -36,6 +36,7 @@
                     type="number"
                     id="temperature"
                     placeholder="e.g. 25"
+                    step="any"
                 >
 
                 <label for="unit">Select Unit</label>
@@ -51,10 +52,7 @@
                 </button>
 
             </div>
-
-            <div class="result" id="result">
-                Your converted temperature will appear here.
-            </div>
+<div class="result" id="result" role="status" aria-live="polite">Your converted temperature will appear here.</div>
 
         </section>
 
