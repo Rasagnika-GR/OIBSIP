@@ -102,7 +102,7 @@ a {
 .hero-content {
     max-width: 620px;
 }
-/* Case number and status */
+
 .case-label {
     display: flex;
     flex-wrap: wrap;
@@ -126,7 +126,6 @@ a {
     border-radius: 50%;
     background: var(--red-light);
 }
-/* Main headline */
 .hero h1 {
     margin-bottom: 25px;
     font-family: Georgia, "Times New Roman", serif;
@@ -146,7 +145,7 @@ a {
     font-size: 15px;
     line-height: 1.9;
 }
-/* Hero buttons */
+
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
@@ -202,7 +201,7 @@ a {
     transition: transform 0.4s ease;}
 .case-visual:hover {
     transform: rotate(0deg) translateY(-4px);}
-/* Red strip at the top of the file */
+
 .file-header {
     display: flex;
     justify-content: space-between;
@@ -214,7 +213,7 @@ a {
     font-size: 10px;
     letter-spacing: 1px;
 }
-/* Paper content */
+
 .file-content {
     position: relative;
     min-height: 425px;
@@ -249,7 +248,7 @@ a {
     margin-bottom: 10px;
     background: rgba(32, 29, 25, 0.35);
 }
-/* Evidence details */
+
 .file-detail {
     display: flex;
     flex-direction: column;
@@ -276,7 +275,7 @@ a {
     text-align: center;
     transform: rotate(-10deg);
 }
-/* Footer of the paper panel */
+
 .file-footer {
     padding: 12px;
     background: #28282b;
@@ -375,6 +374,12 @@ a {
         right: 20px;
         bottom: 24px;
     }
+    .guess-options {
+    flex-direction: column;
+}
+.guess-button {
+    width: 100%;
+}
 }
 
 .case-section {
@@ -529,10 +534,9 @@ a {
     grid-template-columns: 120px 1fr 1.2fr;
     align-items: center;
     gap: 35px;
-
     padding: 28px 0;
-
     border-top: 1px solid #3a3b40;
+    transition: all 0.3s ease;
 }
 
 .evidence-card:last-child {
@@ -542,7 +546,6 @@ a {
 .evidence-card:hover {
     padding-left: 15px;
     border-color: var(--red);
-    transition: all 0.3s ease;
 }
 
 .evidence-number {
@@ -758,4 +761,7 @@ a {
     font-family: "Courier New", monospace;
     font-size: 12px;
     letter-spacing: 1px;
+}
+section[id] {
+    scroll-margin-top: 90px;
 }
